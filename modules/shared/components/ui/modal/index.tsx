@@ -7,8 +7,14 @@ interface ModalProps extends ReactModalProps {
   isOpen: boolean;
 }
 
-const customStyles = {
+const MODAL_STYLES = {
   content: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '60%',
+    height: '60%',
+    minWidth: '500px',
     top: '50%',
     left: '50%',
     right: 'auto',
@@ -18,13 +24,16 @@ const customStyles = {
     backgroundColor: theme.colors.gray600
   },
   overlay: {
-    backgroundColor: 'rgba(26, 34, 43, 0.7)'
+    backgroundColor: 'rgba(26, 34, 43, 0.7)',
+    zIndex: 9999999
   }
 };
 
+RModal.setAppElement('#__next');
+
 const Modal: React.FC<ModalProps> = ({ isOpen, children, ...rest }) => {
   return (
-    <RModal isOpen={isOpen} style={customStyles} {...rest}>
+    <RModal isOpen={isOpen} style={MODAL_STYLES} {...rest}>
       {children}
     </RModal>
   );

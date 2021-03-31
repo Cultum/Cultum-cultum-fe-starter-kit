@@ -8,15 +8,19 @@ import { PersonInfo } from '@md-sw-person/components/person-info';
 import { Button } from '@md-modules/shared/components/ui/button';
 // views
 import {
+  Wrapper,
+  PersonName,
   ContentWrapper,
-  PersonDetailsContainer,
   PersonImgContainer,
   PersonInfoContainer,
-  PersonName,
-  Wrapper
+  PersonDetailsContainer
 } from './views';
 
-const PersonPresentation = ({ closeModal }: any) => {
+interface PersonPresentationProps {
+  closeModal: () => void;
+}
+
+const PersonPresentation: React.FC<PersonPresentationProps> = ({ closeModal }) => {
   const { isLoading, person, error } = React.useContext(PersonAPIContext);
   const { personInfo } = React.useContext(PersonBLContext);
 
@@ -33,7 +37,9 @@ const PersonPresentation = ({ closeModal }: any) => {
               {personInfo.map((i, idx) => (
                 <PersonInfo key={idx} {...i} />
               ))}
-              <Button onClick={closeModal}>Close</Button>
+              <Button onClick={closeModal} preset='close'>
+                &#10005;
+              </Button>
             </PersonInfoContainer>
           </PersonDetailsContainer>
         </ContentLoader>
