@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const InfoWrapper = styled.div`
   display: flex;
   align-items: center;
+  width: 100%;
   color: ${({ theme }) => theme.colors.white};
   padding: 7px 0;
 `;

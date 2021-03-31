@@ -5,6 +5,7 @@ import { PersonBLContext } from '@md-sw-person/layers/business';
 // view components
 import { ContentLoader } from '@md-ui/loaders/content-loader';
 import { PersonInfo } from '@md-sw-person/components/person-info';
+import { Button } from '@md-modules/shared/components/ui/button';
 // views
 import {
   ContentWrapper,
@@ -15,7 +16,7 @@ import {
   Wrapper
 } from './views';
 
-const PersonPresentation = () => {
+const PersonPresentation = ({ closeModal }: any) => {
   const { isLoading, person, error } = React.useContext(PersonAPIContext);
   const { personInfo } = React.useContext(PersonBLContext);
 
@@ -32,6 +33,7 @@ const PersonPresentation = () => {
               {personInfo.map((i, idx) => (
                 <PersonInfo key={idx} {...i} />
               ))}
+              <Button onClick={closeModal}>Close</Button>
             </PersonInfoContainer>
           </PersonDetailsContainer>
         </ContentLoader>

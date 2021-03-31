@@ -32,4 +32,8 @@ export const PersonName = styled.h2`
   color: ${({ theme }) => theme.colors.white};
 `;
 
-export const PersonInfoContainer = styled.div``;
+export const PersonInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;

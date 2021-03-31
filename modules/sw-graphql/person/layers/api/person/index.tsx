@@ -1,6 +1,4 @@
 import * as React from 'react';
-// libs
-import { useRouter } from 'next/router';
 // utils
 import { useQuery } from '@apollo/client';
 import * as U from '@md-utils';
@@ -24,12 +22,14 @@ const PersonAPIContext = React.createContext<Context>({
   refetch: () => Promise.resolve({} as GetPerson)
 });
 
-const PersonAPIContextProvider: React.FC = ({ children }) => {
-  const { query } = useRouter();
+interface Props {
+  id: string;
+}
 
+const PersonAPIContextProvider: React.FC<Props> = ({ children, id }) => {
   const { data, loading, error, refetch } = useQuery<GetPersonResponse, GetPersonVariables>(GET_PERSON_QUERY, {
-    variables: { id: query.id as string },
-    skip: !query.id
+    variables: { id },
+    skip: !id
   });
 
   const refetchPerson = async (variables?: Partial<GetPersonVariables>) => {
