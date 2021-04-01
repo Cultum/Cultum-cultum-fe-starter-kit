@@ -1,11 +1,7 @@
 import React from 'react';
 import RModal, { Props as ReactModalProps } from 'react-modal';
-// hooks
+// local
 import { theme } from '@md-styles/styled/theme';
-
-interface ModalProps extends ReactModalProps {
-  isOpen: boolean;
-}
 
 const MODAL_STYLES = {
   content: {
@@ -31,12 +27,10 @@ const MODAL_STYLES = {
 
 RModal.setAppElement('#__next');
 
-const Modal: React.FC<ModalProps> = ({ isOpen, children, ...rest }) => {
+export const Modal: React.FC<ReactModalProps> = ({ isOpen, children, ...rest }) => {
   return (
     <RModal isOpen={isOpen} style={MODAL_STYLES} {...rest}>
       {children}
     </RModal>
   );
 };
-
-export default Modal;
