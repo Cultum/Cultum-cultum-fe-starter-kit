@@ -17,7 +17,14 @@ const PeoplePresentation = () => {
       <ContentLoader isLoading={isLoading} error={error}>
         <Wrapper>
           {peopleList.map((person) => (
-            <Card key={person.id} href='/graphql/people/[id]' as={`/graphql/people/${person.id}`} {...person} />
+            <Card
+              key={person.id}
+              href='/graphql/people/[id]'
+              as={`/graphql/people/${person.id}`}
+              modalEnabled
+              modalType='PERSON_DETAILS_MODAL'
+              {...person}
+            />
           ))}
         </Wrapper>
       </ContentLoader>

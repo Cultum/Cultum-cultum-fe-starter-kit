@@ -2,6 +2,7 @@ import * as React from 'react';
 // view components
 import { Card } from '@md-sw/shared/components/card';
 import { ContentLoader } from '@md-ui/loaders/content-loader';
+import { Modal } from '@md-modules/shared/components/ui/modal';
 // views
 import { ContentWrapper, Wrapper } from '@md-shared/views/common';
 // hooks
@@ -51,9 +52,17 @@ const Starships = () => {
       <ContentLoader isLoading={loading} error={clientError(error)}>
         <Wrapper>
           {starshipsList?.map((starship) => (
-            <Card key={starship.id} href='/redux/starships/[id]' as={`/redux/starships/${starship.id}`} {...starship} />
+            <Card
+              key={starship.id}
+              href='/redux/starships/[id]'
+              as={`/redux/starships/${starship.id}`}
+              modalEnabled
+              modalType='STARSHIP_DETAILS_MODAL'
+              {...starship}
+            />
           ))}
         </Wrapper>
+        <Modal />
       </ContentLoader>
     </ContentWrapper>
   );

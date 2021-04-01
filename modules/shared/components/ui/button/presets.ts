@@ -34,6 +34,27 @@ export const buttonPresets = {
     :active {
       opacity: 0.9;
     }
+  `,
+
+  close: css`
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    outline: none;
+    background-color: transparent;
+    border-radius: 3px;
+    transition: background-color 0.2s linear;
+    cursor: pointer;
+    border: 1px solid ${({ theme }) => theme.colors.green200};
+
+    &:hover {
+      background-color: rgba(135, 204, 67, 0.8);
+    }
   `
 };
 
