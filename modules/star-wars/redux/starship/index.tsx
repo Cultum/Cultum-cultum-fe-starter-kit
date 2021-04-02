@@ -24,7 +24,6 @@ const StarshipContainer = () => {
   // hooks
   const dispatch = useDispatch<ThunkDispatch>();
   const { query } = useRouter();
-  const { modalData } = useSelector<RootStore, RootStore['ui']['modal']>((state) => state.ui.modal);
 
   // store
   const { data: starship, error, loading } = useSelector<
@@ -53,10 +52,10 @@ const StarshipContainer = () => {
   }, [starship]);
 
   React.useEffect(() => {
-    if (!query.id && !modalData.id) return;
+    if (!query.id) return;
 
-    dispatch(API.starships.getStarship.performAPIGetStarship(modalData.id || (query.id as string)));
-  }, [dispatch, query.id, modalData.id]);
+    dispatch(API.starships.getStarship.performAPIGetStarship(query.id as string));
+  }, [dispatch, query.id]);
 
   return (
     <ContentWrapper>

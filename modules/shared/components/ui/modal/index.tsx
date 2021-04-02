@@ -2,13 +2,7 @@ import React from 'react';
 import RModal, { Props as ReactModalProps } from 'react-modal';
 // local
 import { theme } from '@md-styles/styled/theme';
-import { PersonContainer } from '@md-modules/star-wars/graphql/person';
-import { useSelector } from 'react-redux';
-import { RootStore } from '@md-store/index';
-import { ModalType } from '@md-modules/shared/constants/modal';
 import { Button } from '@md-ui/button';
-import { useModal } from '@md-modules/shared/hooks/use-modal';
-import { StarshipContainer } from '@md-modules/star-wars/redux/starship';
 
 const MODAL_STYLES = {
   content: {
@@ -32,30 +26,21 @@ const MODAL_STYLES = {
   }
 };
 
-type ModalProps = Omit<ReactModalProps, 'isOpen'>;
+interface ModalProps extends ReactModalProps {
+  closeModal?: () => void;
+}
 
 RModal.setAppElement('#__next');
 
-const renderSwitch = (modalType: ModalType) => {
-  switch (modalType) {
-    case 'PERSON_DETAILS_MODAL':
-      return <PersonContainer />;
-    case 'STARSHIP_DETAILS_MODAL':
-      return <StarshipContainer />;
-  }
-};
-
-export const Modal: React.FC<ModalProps> = ({ ...rest }) => {
-  const { modalType, modalData } = useSelector<RootStore, RootStore['ui']['modal']>((state) => state.ui.modal);
-  const { closeModal } = useModal({ modalType });
-
+const Modal: React.FC<ModalProps> = ({ isOpen, closeModal, children, ...rest }) => {
   return (
-    <RModal isOpen={modalData.open} style={MODAL_STYLES} {...rest}>
-      {renderSwitch(modalType)}
-
-      <Button onClick={() => closeModal(modalData.id)} preset='close'>
+    <RModal isOpen={isOpen} style={MODAL_STYLES} {...rest}>
+      <Button onClick={closeModal} preset='close'>
         &#10005;
       </Button>
+      {children}
     </RModal>
   );
 };
+
+export { Modal };

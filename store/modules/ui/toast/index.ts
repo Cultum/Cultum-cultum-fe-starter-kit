@@ -13,7 +13,6 @@ type NotificationType = 'WARNING' | 'ERROR' | 'SUCCESS';
 export interface OpenToastParams {
   type: NotificationType;
   message: string;
-  onPress?(): unknown;
 }
 
 export const setOpenToastAction = createAction<typeof OPEN_TOAST, OpenToastParams>(OPEN_TOAST);

@@ -1,5 +1,9 @@
-import { ModalType } from '@md-modules/shared/constants/modal';
+// constants
+import * as modalTypes from '@md-shared/constants/modal';
+// helpers
 import { createAction } from '@md-store/helpers';
+// utils
+import keys from 'lodash/keys';
 
 /* ------------- Types ------------- */
 
@@ -8,12 +12,11 @@ export const CLOSE_MODAL = '@ui/modal/CLOSE_MODAL';
 export const UPDATE_MODAL = '@ui/modal/UPDATE_MODAL';
 
 /* ------------- Types and Action Creators ------------- */
+export type ModalData = Record<string, number | boolean | string>;
+
 export interface ModalParams {
-  modalType: any;
-  modalData: {
-    id: string;
-    open: boolean;
-  };
+  modalType: string;
+  modalData?: ModalData;
 }
 
 export const setOpenModalAction = createAction<typeof OPEN_MODAL, ModalParams>(OPEN_MODAL);
@@ -29,41 +32,48 @@ type Actions = SetOpenModalAction | SetCloseModalAction | SetUpdateModalAction;
 
 /* ------------- Initial State ------------- */
 
-export type InitialState = {
-  modalType: ModalType;
-  modalData: {
-    id: string;
-    open: boolean;
-  };
+export type Modal = {
+  [key: string]: { isOpen: boolean };
 };
 
-export const INITIAL_STATE: InitialState = {
-  modalType: '' as ModalType,
-  modalData: { open: false, id: '' }
-};
+export type InitialState = Modal;
+
+export const INITIAL_STATE: InitialState = keys(modalTypes).reduce(
+  (o, key) => ({
+    ...o,
+    [key]: { isOpen: false }
+  }),
+  {}
+);
 
 /* ------------- Hookup Reducers To Types ------------- */
 
 export function reducer(state = INITIAL_STATE, action: Actions): InitialState {
   switch (action.type) {
     case OPEN_MODAL:
-      return state.modalData.open
-        ? state
-        : {
-            ...state,
-            ...action.payload
-          };
+      return {
+        ...state,
+        [action.payload.modalType]: {
+          ...action.payload.modalData,
+          isOpen: true
+        }
+      };
 
     case CLOSE_MODAL:
       return {
         ...state,
-        ...action.payload
+        [action.payload.modalType]: {
+          isOpen: false
+        }
       };
 
     case UPDATE_MODAL:
       return {
         ...state,
-        ...action.payload
+        [action.payload.modalType]: {
+          ...state[action.payload.modalType],
+          ...action.payload.modalData
+        }
       };
 
     default:

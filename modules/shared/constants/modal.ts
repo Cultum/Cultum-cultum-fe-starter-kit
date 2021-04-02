@@ -1,5 +1,2 @@
-export type ModalType = 'PERSON_DETAILS_MODAL' | 'STARSHIP_DETAILS_MODAL';
-
-export interface UseModalProps {
-  modalType?: ModalType;
-}
+export const PERSON_DETAILS_MODAL = 'PERSON_DETAILS_MODAL';
+export const STARSHIP_DETAILS_MODAL = 'STARSHIP_DETAILS_MODAL';

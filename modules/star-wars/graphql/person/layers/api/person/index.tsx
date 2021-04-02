@@ -1,14 +1,12 @@
 import * as React from 'react';
 // libs
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
 // utils
 import { useQuery } from '@apollo/client';
 import * as U from '@md-utils';
 // types
 import { ClientError } from '@md-utils/errors/custom';
 import { GetPerson, GetPersonResponse, GetPersonVariables } from '@md-queries/person/types';
-import { RootStore } from '@md-store/index';
 // queries
 import { GET_PERSON_QUERY } from '@md-queries/person';
 
@@ -28,13 +26,10 @@ const PersonAPIContext = React.createContext<Context>({
 
 const PersonAPIContextProvider: React.FC = ({ children }) => {
   const { query } = useRouter();
-  const { modalData } = useSelector<RootStore, RootStore['ui']['modal']>((state) => state.ui.modal);
 
   const { data, loading, error, refetch } = useQuery<GetPersonResponse, GetPersonVariables>(GET_PERSON_QUERY, {
-    variables: {
-      id: (modalData.id as string) || (query.id as string)
-    },
-    skip: !modalData.id && !query.id
+    variables: { id: query.id as string },
+    skip: !query.id
   });
 
   const refetchPerson = async (variables?: Partial<GetPersonVariables>) => {
