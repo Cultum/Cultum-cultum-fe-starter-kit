@@ -1,6 +1,6 @@
 import React from 'react';
 // store
-import { setCloseModalAction, setOpenModalAction } from '@md-store/modules/ui/modal';
+import { setCloseModalAction, setOpenModalAction, setUpdateModalAction } from '@md-store/modules/ui/modal';
 // hooks
 import { useDispatch, useSelector } from 'react-redux';
 // types
@@ -24,8 +24,8 @@ const useModal = ({ modalType }: UseModalProps) => {
         })
       );
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [dispatch]
+
+    [dispatch, modalType]
   );
 
   const closeModal = React.useCallback(
@@ -40,15 +40,15 @@ const useModal = ({ modalType }: UseModalProps) => {
         })
       );
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [dispatch]
+
+    [dispatch, modalType]
   );
 
   const updateModal = React.useCallback(
     (id) => {
       dispatch(
-        setCloseModalAction({
-          modalType,
+        setUpdateModalAction({
+          modalType: modalData.modalType,
           modalData: {
             id,
             open: modalData.modalData.open
@@ -56,8 +56,8 @@ const useModal = ({ modalType }: UseModalProps) => {
         })
       );
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [dispatch]
+
+    [dispatch, modalData]
   );
 
   return {
