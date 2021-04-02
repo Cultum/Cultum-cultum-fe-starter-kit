@@ -8,23 +8,19 @@ import { PeopleBLContext } from '@md-sw-people/layers/business';
 // views
 import { ContentWrapper, Wrapper } from '@md-shared/views/common';
 // components
-import { Modal } from '@md-ui/modal';
+import { PersonDetailsModal } from '@md-sw-people/components/person-details-modal';
 // constants
 import { PERSON_DETAILS_MODAL } from '@md-constants/modal';
 // hooks
 import { useModal } from '@md-shared/hooks/use-modal';
 
 const PeoplePresentation = () => {
-  const { isLoading, error } = React.useContext(PeopleAPIContext);
+  const { isLoading, error, people } = React.useContext(PeopleAPIContext);
   const { peopleList } = React.useContext(PeopleBLContext);
 
-  const {
-    openModal,
-    closeModal,
-    modalData: { isOpen }
-  } = useModal({ modalType: PERSON_DETAILS_MODAL });
+  const { openModal } = useModal({ modalType: PERSON_DETAILS_MODAL });
 
-  const showDetails = () => openModal();
+  const showDetails = (id: string) => openModal(people.find((person) => id === person.id));
 
   return (
     <ContentWrapper>
@@ -39,11 +35,8 @@ const PeoplePresentation = () => {
               {...person}
             />
           ))}
+          <PersonDetailsModal />
         </Wrapper>
-
-        <Modal isOpen={isOpen} closeModal={closeModal}>
-          TEST
-        </Modal>
       </ContentLoader>
     </ContentWrapper>
   );

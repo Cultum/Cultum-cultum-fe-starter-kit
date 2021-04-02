@@ -4,6 +4,10 @@ import * as modalTypes from '@md-shared/constants/modal';
 import { createAction } from '@md-store/helpers';
 // utils
 import keys from 'lodash/keys';
+// types
+import { GetPerson } from '@md-queries/person/types';
+import { GetStarship } from '@md-queries/starship/types';
+import { ModalType } from '@md-modules/shared/constants/modal';
 
 /* ------------- Types ------------- */
 
@@ -12,11 +16,12 @@ export const CLOSE_MODAL = '@ui/modal/CLOSE_MODAL';
 export const UPDATE_MODAL = '@ui/modal/UPDATE_MODAL';
 
 /* ------------- Types and Action Creators ------------- */
-export type ModalData = Record<string, number | boolean | string>;
+// export type ModalData = Record<string, number | boolean | string | null>;
+export type ModalInfo = Partial<GetPerson & GetStarship>;
 
 export interface ModalParams {
-  modalType: string;
-  modalData?: ModalData;
+  modalType: ModalType;
+  modalInfo?: ModalInfo;
 }
 
 export const setOpenModalAction = createAction<typeof OPEN_MODAL, ModalParams>(OPEN_MODAL);
@@ -33,7 +38,7 @@ type Actions = SetOpenModalAction | SetCloseModalAction | SetUpdateModalAction;
 /* ------------- Initial State ------------- */
 
 export type Modal = {
-  [key: string]: { isOpen: boolean };
+  [key: string]: { isOpen: boolean; modalInfo: ModalInfo };
 };
 
 export type InitialState = Modal;
@@ -41,7 +46,7 @@ export type InitialState = Modal;
 export const INITIAL_STATE: InitialState = keys(modalTypes).reduce(
   (o, key) => ({
     ...o,
-    [key]: { isOpen: false }
+    [key]: { isOpen: false, modalInfo: {} }
   }),
   {}
 );
@@ -54,7 +59,7 @@ export function reducer(state = INITIAL_STATE, action: Actions): InitialState {
       return {
         ...state,
         [action.payload.modalType]: {
-          ...action.payload.modalData,
+          modalInfo: { ...action.payload.modalInfo },
           isOpen: true
         }
       };
@@ -63,6 +68,7 @@ export function reducer(state = INITIAL_STATE, action: Actions): InitialState {
       return {
         ...state,
         [action.payload.modalType]: {
+          modalInfo: state[action.payload.modalType].modalInfo,
           isOpen: false
         }
       };
@@ -72,7 +78,7 @@ export function reducer(state = INITIAL_STATE, action: Actions): InitialState {
         ...state,
         [action.payload.modalType]: {
           ...state[action.payload.modalType],
-          ...action.payload.modalData
+          ...action.payload.modalInfo
         }
       };
 

@@ -11,7 +11,7 @@ interface Props extends LinkProps {
   id: string;
   name: string;
   image: string;
-  openModal?: () => void;
+  openModal?: (id: string) => void;
 }
 
 const Card: React.FC<Props> = ({ id, name, image, openModal, ...rest }) => {
@@ -25,7 +25,7 @@ const Card: React.FC<Props> = ({ id, name, image, openModal, ...rest }) => {
           <CardFooterTitle>{name}</CardFooterTitle>
         </Link>
         {openModal ? (
-          <Button preset='details' onClick={openModal}>
+          <Button preset='details' onClick={() => openModal(id)}>
             Details
           </Button>
         ) : (
