@@ -24,6 +24,8 @@ const PeoplePresentation = () => {
     modalData: { isOpen }
   } = useModal({ modalType: PERSON_DETAILS_MODAL });
 
+  const showDetails = () => openModal();
+
   return (
     <ContentWrapper>
       <ContentLoader isLoading={isLoading} error={error}>
@@ -33,7 +35,7 @@ const PeoplePresentation = () => {
               key={person.id}
               href='/graphql/people/[id]'
               as={`/graphql/people/${person.id}`}
-              openModal={openModal}
+              openModal={showDetails}
               {...person}
             />
           ))}
