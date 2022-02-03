@@ -4,9 +4,9 @@
 
 ## Getting Started
 
-~ Clone project into your local projects folder:
+~ Clone project template:
 
-`git clone git@gitlab.com:Venumteam/cultum-fe-starter-kit.git`
+`npx degit Cultum/Cultum-cultum-fe-starter-kit test-template`
 
 ~ Open cloned project in the `IDE`
 
