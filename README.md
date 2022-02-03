@@ -4,9 +4,9 @@
 
 ## Getting Started
 
-~ Clone project into your local projects folder:
+~ Clone next.js template:
 
-`git clone git@gitlab.com:Venumteam/cultum-fe-starter-kit.git`
+`npx degit Cultum/Cultum-cultum-fe-starter-kit <your-project-name>`
 
 ~ Open cloned project in the `IDE`
 
