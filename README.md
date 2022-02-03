@@ -4,7 +4,7 @@
 
 ## Getting Started
 
-~ Clone project template:
+~ Clone next.js template:
 
 `npx degit Cultum/Cultum-cultum-fe-starter-kit test-template`
 
