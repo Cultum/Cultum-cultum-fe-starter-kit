@@ -16,8 +16,8 @@ const PeoplePresentation = () => {
 
       <Description>
         Client-side rendering (CSR) means rendering pages directly in the browser using JavaScript. All logic, data
-        fetching, templating and routing are handled on the client rather than the server. Simply put, we get an empty
-        HTML file (on the client side) and with the help of a JavaScript we fill it with content.
+        fetching, templating and routing are handled on the client rather than the server. To simplify, we get an empty
+        or half empty HTML file (on the client side) and with the help of a JavaScript we fill it with content.
       </Description>
 
       <Title>When should I use CSR?</Title>

@@ -41,7 +41,7 @@ const Planets = () => {
       <Title>SSR (Server-side Rendering)</Title>
 
       <Description>
-        If a page uses Server-side Rendering, the page HTML is generated on each request. Simply put, with each change,
+        If a page uses Server-side Rendering, the page HTML is generated on each request. To simplify, with each change,
         a fully assembled HTML file comes from the server.
       </Description>
 
