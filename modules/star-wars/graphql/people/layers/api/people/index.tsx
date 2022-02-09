@@ -36,7 +36,7 @@ const PeopleAPIContextProvider: React.FC = ({ children }) => {
 
       return result.data ? result.data.allPeople.people : [];
     } catch (error: any) {
-      return U.errors.parseAndCreateClientError(error);
+      return U.errors.parseGQLAndCreateClientError(error);
     }
   };
 
@@ -56,7 +56,7 @@ const PeopleAPIContextProvider: React.FC = ({ children }) => {
         people,
         isLoading: loading,
         refetch: refetchPeople,
-        error: error ? U.errors.parseAndCreateClientError(error) : undefined
+        error: error ? U.errors.parseGQLAndCreateClientError(error) : undefined
       }}
     >
       {children}

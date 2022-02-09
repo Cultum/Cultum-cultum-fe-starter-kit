@@ -36,7 +36,7 @@ const StarshipsAPIContextProvider: React.FC = ({ children }) => {
 
       return result.data ? result.data.allStarships.starships : [];
     } catch (error: any) {
-      return U.errors.parseAndCreateClientError(error);
+      return U.errors.parseGQLAndCreateClientError(error);
     }
   };
 
@@ -54,7 +54,7 @@ const StarshipsAPIContextProvider: React.FC = ({ children }) => {
     starships,
     isLoading: loading,
     refetch: refetchStarships,
-    error: error ? U.errors.parseAndCreateClientError(error) : undefined
+    error: error ? U.errors.parseGQLAndCreateClientError(error) : undefined
   };
 
   return <StarshipsAPIContext.Provider value={value}>{children}</StarshipsAPIContext.Provider>;

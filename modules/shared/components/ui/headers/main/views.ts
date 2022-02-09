@@ -20,8 +20,6 @@ export const IWrapper = styled.div`
 `;
 
 export const LWrapper = styled.div`
-  flex: 1;
-
   img {
     display: block;
     max-height: 20px;
@@ -31,7 +29,6 @@ export const LWrapper = styled.div`
 `;
 
 export const RWrapper = styled.div`
-  flex: 2;
   justify-content: flex-end;
   color: white;
 

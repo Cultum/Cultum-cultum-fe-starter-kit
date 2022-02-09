@@ -72,6 +72,9 @@
       ],
       "@md-store/*": [
         "./store/*"
+      ],
+      "@md-toolkit-store/*": [
+        "./toolkit-store/*"
       ]
     },
     "incremental": true

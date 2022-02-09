@@ -43,7 +43,7 @@ const PersonAPIContextProvider: React.FC = ({ children }) => {
 
       return result.data?.person;
     } catch (error: any) {
-      return U.errors.parseAndCreateClientError(error);
+      return U.errors.parseGQLAndCreateClientError(error);
     }
   };
 
@@ -67,7 +67,7 @@ const PersonAPIContextProvider: React.FC = ({ children }) => {
         personInfo,
         isLoading: loading,
         person: data ? data.person : undefined,
-        error: error ? U.errors.parseAndCreateClientError(error) : undefined,
+        error: error ? U.errors.parseGQLAndCreateClientError(error) : undefined,
         refetch: refetchPerson
       }}
     >

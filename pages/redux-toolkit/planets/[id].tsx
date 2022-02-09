@@ -1,25 +1,25 @@
 import * as React from 'react';
 // view components
 import { MainLayout } from '@md-shared/layouts/main';
-import { PlanetContainer } from '@md-modules/star-wars/redux/planet';
+import { PlanetToolkit } from '@md-sw/redux-toolkit/planet';
 // context
 import { AppReduxProvider } from '@md-modules/shared/providers/redux';
 // types
-import { RootStore } from '@md-store/index';
 import { GetServerSidePropsContext } from 'next';
 import { ThunkDispatch } from '@md-store/helpers';
+import { RootToolkitStore } from '@md-toolkit-store/index';
 // store
-import * as API from '@md-store/modules/api';
-import { initializeStore } from 'lib/redux/initStore';
+import { initializeReduxToolKitStore } from 'lib/redux-toolkit/initStore';
+import { getPlanet } from '@md-toolkit-store/modules/api/planets/get-planet';
 
 interface Props {
-  initialReduxState: RootStore;
+  initialReduxState: RootToolkitStore;
 }
 
-const PlanetPage = ({ initialReduxState }: Props) => (
-  <AppReduxProvider initialReduxState={initialReduxState}>
+const PlanetToolkitPage = (props: Props) => (
+  <AppReduxProvider initialReduxToolkitState={props.initialReduxState} isReduxToolKit>
     <MainLayout>
-      <PlanetContainer />
+      <PlanetToolkit />
     </MainLayout>
   </AppReduxProvider>
 );
@@ -28,12 +28,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (!context.params?.id) return;
 
   const id = context.params.id as string;
-  const reduxStore = initializeStore();
+  const reduxStore = initializeReduxToolKitStore();
   const dispatch = reduxStore.dispatch as ThunkDispatch;
 
-  await dispatch(API.planets.getPlanet.performAPIGetPlanet(id));
+  await dispatch(getPlanet(id));
 
   return { props: { initialReduxState: reduxStore.getState() } };
 }
 
-export default PlanetPage;
+export default PlanetToolkitPage;

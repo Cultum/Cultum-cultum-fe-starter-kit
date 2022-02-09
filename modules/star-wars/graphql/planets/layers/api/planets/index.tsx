@@ -36,7 +36,7 @@ const PlanetsAPIContextProvider: React.FC = ({ children }) => {
 
       return result.data ? result.data.allPlanets.planets : [];
     } catch (error: any) {
-      return U.errors.parseAndCreateClientError(error);
+      return U.errors.parseGQLAndCreateClientError(error);
     }
   };
 
@@ -56,7 +56,7 @@ const PlanetsAPIContextProvider: React.FC = ({ children }) => {
         planets,
         isLoading: loading,
         refetch: refetchPlanets,
-        error: error ? U.errors.parseAndCreateClientError(error) : undefined
+        error: error ? U.errors.parseGQLAndCreateClientError(error) : undefined
       }}
     >
       {children}

@@ -2,7 +2,6 @@ import * as React from 'react';
 // components
 import Head from 'next/head';
 // providers
-import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { ApolloProvider } from '@apollo/client';
 // types
@@ -11,7 +10,6 @@ import { AppProps } from 'next/app';
 import { theme } from '@md-styles/styled/theme';
 import { GlobalStyles } from '@md-styles/styled/global';
 // hooks
-import { useStore } from '@md-shared/hooks/use-store';
 import { useApollo } from '../lib/apolloClient';
 // utils
 import { cookiesManager } from '@md-managers/cookies';
@@ -22,7 +20,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   const { getToken } = cookiesManager();
   const token: string | undefined = pageProps.serverToken ?? getToken();
   const apolloClient = useApollo(pageProps.initialApolloState, token);
-  const store = useStore(pageProps.initialReduxState);
 
   return (
     <>
@@ -34,9 +31,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       </Head>
       <ThemeProvider theme={theme}>
         <ApolloProvider client={apolloClient}>
-          <Provider store={store}>
-            <Component {...pageProps} />
-          </Provider>
+          <Component {...pageProps} />
         </ApolloProvider>
       </ThemeProvider>
       <GlobalStyles />

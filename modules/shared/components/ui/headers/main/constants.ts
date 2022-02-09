@@ -13,5 +13,7 @@ export const graphqlMenuItems = [
 
 export const reduxMenuItems = [
   { l: 'Starships (CSR)', h: '/redux/starships' },
-  { l: 'Planets (SSR)', h: '/redux/planets' }
+  { l: 'Planets (SSR)', h: '/redux/planets' },
+  { l: 'Starships Toolkit (CSR)', h: '/redux-toolkit/starships' },
+  { l: 'Planets Toolkit (SSR)', h: '/redux-toolkit/planets' }
 ];

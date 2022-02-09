@@ -43,7 +43,7 @@ const StarshipAPIContextProvider: React.FC = ({ children }) => {
 
       return result.data?.starship;
     } catch (error: any) {
-      return U.errors.parseAndCreateClientError(error);
+      return U.errors.parseGQLAndCreateClientError(error);
     }
   };
 
@@ -69,7 +69,7 @@ const StarshipAPIContextProvider: React.FC = ({ children }) => {
         isLoading: loading,
         refetch: refetchStarship,
         starship: data ? data.starship : undefined,
-        error: error ? U.errors.parseAndCreateClientError(error) : undefined
+        error: error ? U.errors.parseGQLAndCreateClientError(error) : undefined
       }}
     >
       {children}
