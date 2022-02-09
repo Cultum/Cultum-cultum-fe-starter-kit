@@ -4,9 +4,9 @@
 
 ## Getting Started
 
-~ Clone next.js template:
+~ Use Cultum next.js template:
 
-`npx degit Cultum/Cultum-cultum-fe-starter-kit <your-project-name>`
+`npx degit Cultum/cultum-fe-starter-kit <your-project-name>`
 
 ~ Open cloned project in the `IDE`
 
