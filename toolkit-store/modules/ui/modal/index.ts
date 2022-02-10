@@ -14,6 +14,7 @@ export const INITIAL_STATE: InitialState = {
 
 export const slice = createSlice({
   name: 'modal',
+  initialState: INITIAL_STATE,
   reducers: {
     openModal: (state) => {
       state.open = true;
@@ -21,6 +22,5 @@ export const slice = createSlice({
     closeModal: (state) => {
       state.open = false;
     }
-  },
-  initialState: INITIAL_STATE
+  }
 });

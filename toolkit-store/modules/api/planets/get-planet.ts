@@ -5,17 +5,15 @@ import { PlanetTechResponseResult } from '@md-shared/services/api/controllers/pl
 /* ------------- Initial State ------------- */
 
 export type InitialState = {
-  count: number;
   loading: boolean;
   error: null | string;
   data: PlanetTechResponseResult | null;
 };
 
 export const INITIAL_STATE: InitialState = {
-  loading: false,
-  error: null,
   data: null,
-  count: 0
+  error: null,
+  loading: false
 };
 
 /* ------------- Thunks ------------- */
