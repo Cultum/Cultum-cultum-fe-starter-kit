@@ -54,7 +54,7 @@ const StarshipsAPIContextProvider: React.FC = ({ children }) => {
     starships,
     isLoading: loading,
     refetch: refetchStarships,
-    error: error ? U.errors.parseGQLAndCreateClientError(error) : undefined
+    error: error && U.errors.parseGQLAndCreateClientError(error)
   };
 
   return <StarshipsAPIContext.Provider value={value}>{children}</StarshipsAPIContext.Provider>;

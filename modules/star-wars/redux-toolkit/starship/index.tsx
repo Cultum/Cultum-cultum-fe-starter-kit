@@ -28,7 +28,7 @@ const StarshipToolkit = () => {
   // api
   const { data, error, isLoading } = starshipsAPI.useGetStarshipQuery(query.id as string);
 
-  const clientError = error ? U.errors.parseRTKQAndCreateClientError(error) : undefined;
+  const clientError = error && U.errors.parseRTKQAndCreateClientError(error);
 
   // data transformation
   const starshipInfo = React.useMemo<StarshipInfoProps[]>(() => {

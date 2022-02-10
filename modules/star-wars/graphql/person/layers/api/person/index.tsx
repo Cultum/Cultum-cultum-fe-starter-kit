@@ -66,8 +66,8 @@ const PersonAPIContextProvider: React.FC = ({ children }) => {
       value={{
         personInfo,
         isLoading: loading,
-        person: data ? data.person : undefined,
-        error: error ? U.errors.parseGQLAndCreateClientError(error) : undefined,
+        person: data && data.person,
+        error: error && U.errors.parseGQLAndCreateClientError(error),
         refetch: refetchPerson
       }}
     >

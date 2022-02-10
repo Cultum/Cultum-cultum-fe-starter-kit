@@ -67,8 +67,8 @@ const PlanetAPIContextProvider: React.FC = ({ children }) => {
         planetInfo,
         isLoading: loading,
         refetch: refetchPlanet,
-        planet: data ? data.planet : undefined,
-        error: error ? U.errors.parseGQLAndCreateClientError(error) : undefined
+        planet: data && data.planet,
+        error: error && U.errors.parseGQLAndCreateClientError(error)
       }}
     >
       {children}
