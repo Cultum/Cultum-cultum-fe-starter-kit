@@ -63,13 +63,13 @@ environment
 
 ## This boilerplate currently includes.
 
-1. Next.js
-2. axios
-3. GraphQL/Apollo Client
-4. Redux
-5. Redux Toolkit
-6. TypeScript
-7. Styled Components
-8. yup
-9. React Hook Form
-10. React Final Form
+- Next.js
+- axios
+- GraphQL/Apollo Client
+- Redux
+- Redux Toolkit
+- TypeScript
+- Styled Components
+- yup
+- React Hook Form
+- React Final Form
