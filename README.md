@@ -60,3 +60,16 @@
 
 Every merge request which merged to `Staging` or `Prod` branches runs the deployment process to corresponding live
 environment
+
+## This boilerplate currently includes.
+
+1. Next.js
+2. axios
+3. GraphQL/Apollo Client
+4. Redux
+5. Redux Toolkit
+6. TypeScript
+7. Styled Components
+8. yup
+9. React Hook Form
+10. React Final Form
