@@ -1,5 +1,6 @@
 export const globalMenuItems = [
   { l: 'Form', h: '/form' },
+  { l: 'Memorizing', h: '/memorizing' },
   { l: 'Dynamic import', h: '/dynamic-import' },
   { l: 'Image', h: '/images' }
 ];

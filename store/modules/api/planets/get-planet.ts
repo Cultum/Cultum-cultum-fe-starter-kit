@@ -98,6 +98,7 @@ export function reducer(state = INITIAL_STATE, action: Actions): InitialState {
         ...state,
         error: action.payload
       };
+
     default:
       return state;
   }
