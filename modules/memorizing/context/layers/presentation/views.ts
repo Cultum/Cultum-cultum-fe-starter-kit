@@ -1,12 +1,17 @@
 import styled from 'styled-components';
-import Image from 'next/image';
+import { Wrapper } from '@md-shared/views/common';
 
-export const ImagesWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+export const DescriptionWrapper = styled.div`
+  text-align: center;
 `;
 
-export const Img = styled(Image)`
-  margin: 0 20px !important;
+export const CardsWrapper = styled(Wrapper)`
+  flex: 2;
+  margin: 0 0 0 20px;
+`;
+
+export const InnerWrapper = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
 `;
